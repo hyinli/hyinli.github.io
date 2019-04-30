@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hyinli.github.io/links/index.html</loc>
+    
+    <lastmod>2019-04-30T06:25:53.255Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyinli.github.io/repository/index.html</loc>
+    
+    <lastmod>2019-04-30T06:25:03.576Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyinli.github.io/books/index.html</loc>
+    
+    <lastmod>2019-04-30T06:24:22.201Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyinli.github.io/tags/index.html</loc>
+    
+    <lastmod>2019-04-30T06:22:43.584Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyinli.github.io/categories/index.html</loc>
+    
+    <lastmod>2019-04-30T06:18:57.589Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hyinli.github.io/home/index.html</loc>
     
     <lastmod>2019-04-30T03:51:43.335Z</lastmod>
@@ -12,13 +47,6 @@
     <loc>https://hyinli.github.io/2019/04/29/%E7%BD%91%E9%A1%B5%E5%8F%B3%E4%B8%8A%E8%A7%92%E6%98%BE%E7%A4%BAgithub/</loc>
     
     <lastmod>2019-04-29T07:03:53.132Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyinli.github.io/links/index.html</loc>
-    
-    <lastmod>2019-04-29T06:09:59.704Z</lastmod>
     
   </url>
   
@@ -68,20 +96,6 @@
     <loc>https://hyinli.github.io/about/index.html</loc>
     
     <lastmod>2019-04-27T05:09:21.243Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyinli.github.io/categories/index.html</loc>
-    
-    <lastmod>2019-04-27T05:07:12.980Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyinli.github.io/tags/index.html</loc>
-    
-    <lastmod>2019-04-27T05:06:12.896Z</lastmod>
     
   </url>
   
