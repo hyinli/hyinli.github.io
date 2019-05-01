@@ -3,21 +3,21 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>第 1 页 | K2 biogithub</title>
+  <title>第 1 页 | K1 biogithub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
   <meta property="og:type" content="website">
-<meta property="og:title" content="K2 biogithub">
+<meta property="og:title" content="K1 biogithub">
 <meta property="og:url" content="https://hyinli.github.io/index.html">
-<meta property="og:site_name" content="K2 biogithub">
+<meta property="og:site_name" content="K1 biogithub">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="K2 biogithub">
+<meta name="twitter:title" content="K1 biogithub">
   
-    <link rel="alternate" href="/atom.xml" title="K2 biogithub" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="K1 biogithub" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
   
@@ -60,7 +60,7 @@
 
           <h1 class="site-title">
             
-              <a href="/" title="K2 biogithub" rel="home"> K2 biogithub </a>
+              <a href="/" title="K1 biogithub" rel="home"> K1 biogithub </a>
             
           </h1>
           
@@ -81,6 +81,8 @@
                     
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">归档</a> </li>
                     
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/links">links</a> </li>
+                    
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">关于</a> </li>
                     
               </ul>
@@ -98,6 +100,856 @@
       <div id="content" class="outer">
         
           <section id="main">
+  
+    <article id="post-oo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/01/oo/">生信技能树R作业答案-高级</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/01/oo/" class="article-date">
+	  <time datetime="2019-05-01T06:34:13.335Z" itemprop="datePublished">五月 1, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/R/">R</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>true</p>
+<h1 id="1-安装一些r包"><a class="markdownIt-Anchor" href="#1-安装一些r包"></a> 1 安装一些R包</h1>
+<p>数据包： ALL, CLL, pasilla, airway<br>
+软件包：limma，DESeq2，clusterProfiler 工具包：reshape2 绘图包：ggplot2</p>
+<pre><code>rm(list = ls())
+if(F){
+  source(&quot;http://bioconductor.org/biocLite.R&quot;)
+  options(&quot;repos&quot; = c(CRAN=&quot;https://mirrors.tuna.tsinghua.edu.cn/CRAN/&quot;))
+  options(BioC_mirror=&quot;http://mirrors.ustc.edu.cn/bioc/&quot;)#修改镜像，安装会加速
+  BiocManager::install(&quot;clusterProfiler&quot;)
+  BiocManager::install(&quot;ComplexHeatmap&quot;)
+  BiocManager::install(&quot;maftools&quot;)
+  BiocManager::install(&quot;reshape2&quot;)
+}
+</code></pre>
+<h1 id="2了解expressionset对象比如cll包里面就有datascllex-找到它包含的元素提取其表达矩阵使用exprs函数查看其大小"><a class="markdownIt-Anchor" href="#2了解expressionset对象比如cll包里面就有datascllex-找到它包含的元素提取其表达矩阵使用exprs函数查看其大小"></a> 2.了解ExpressionSet对象，比如CLL包里面就有data(sCLLex) 找到它包含的元素，提取其表达矩阵(使用exprs函数)，查看其大小</h1>
+<p>A.参考：<a href="http://www.bio-info-trainee.com/bioconductor_China/software/limma.html" target="_blank" rel="noopener">http://www.bio-info-trainee.com/bioconductor_China/software/limma.html</a><br>
+B.参考：<a href="https://github.com/bioconductor-china/basic/blob/master/ExpressionSet.md" target="_blank" rel="noopener">https://github.com/bioconductor-china/basic/blob/master/ExpressionSet.md</a></p>
+<pre><code>library(CLL)
+data(&quot;sCLLex&quot;)
+View(sCLLex)#查看其包含的元素
+sCLLex#查看包含的元素
+
+## ExpressionSet (storageMode: lockedEnvironment)
+## assayData: 12625 features, 22 samples 
+##   element names: exprs 
+## protocolData: none
+## phenoData
+##   sampleNames: CLL11.CEL CLL12.CEL ... CLL9.CEL (22 total)
+##   varLabels: SampleID Disease
+##   varMetadata: labelDescription
+## featureData: none
+## experimentData: use 'experimentData(object)'
+## Annotation: hgu95av2
+
+exp &lt;- exprs(sCLLex)#提取表达矩阵
+dim(exp)#查看其大小
+
+## [1] 12625    22
+
+group &lt;- pData(sCLLex)#提取分组信息
+table(group)#设计矩阵
+
+##         Disease
+## SampleID progres. stable
+##    CLL11        1      0
+##    CLL12        0      1
+##    CLL13        1      0
+##    CLL14        1      0
+##    CLL15        1      0
+##    CLL16        1      0
+##    CLL17        0      1
+##    CLL18        0      1
+##    CLL19        1      0
+##    CLL2         0      1
+##    CLL20        0      1
+##    CLL21        1      0
+##    CLL22        0      1
+##    CLL23        1      0
+##    CLL24        0      1
+##    CLL3         1      0
+##    CLL4         1      0
+##    CLL5         1      0
+##    CLL6         1      0
+##    CLL7         1      0
+##    CLL8         1      0
+##    CLL9         0      1
+</code></pre>
+<h1 id="3了解-strheadhelp函数"><a class="markdownIt-Anchor" href="#3了解-strheadhelp函数"></a> 3了解 str,head,help函数</h1>
+<p>作用于 第二步提取到的表达矩阵</p>
+<pre><code>str(exp)
+
+##  num [1:12625, 1:22] 5.74 2.29 3.31 1.09 7.54 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 2
+##   ..$ : chr [1:12625] &quot;1000_at&quot; &quot;1001_at&quot; &quot;1002_f_at&quot; &quot;1003_s_at&quot; ...
+##   ..$ : chr [1:22] &quot;CLL11.CEL&quot; &quot;CLL12.CEL&quot; &quot;CLL13.CEL&quot; &quot;CLL14.CEL&quot; ...
+
+head(exp)
+
+##           CLL11.CEL CLL12.CEL CLL13.CEL CLL14.CEL CLL15.CEL CLL16.CEL
+## 1000_at    5.743132  6.219412  5.523328  5.340477  5.229904  4.920686
+## 1001_at    2.285143  2.291229  2.287986  2.295313  2.662170  2.278040
+## 1002_f_at  3.309294  3.318466  3.354423  3.327130  3.365113  3.568353
+## 1003_s_at  1.085264  1.117288  1.084010  1.103217  1.074243  1.073097
+## 1004_at    7.544884  7.671801  7.474025  7.152482  6.902932  7.368660
+## 1005_at    5.083793  7.610593  7.631311  6.518594  5.059087  4.855161
+##           CLL17.CEL CLL18.CEL CLL19.CEL CLL20.CEL CLL21.CEL CLL22.CEL
+## 1000_at    5.325348  4.826131  5.212387  5.285830  5.581859  6.251678
+## 1001_at    2.350796  2.325163  2.432635  2.256547  2.348389  2.263849
+## 1002_f_at  3.502440  3.394410  3.617099  3.279726  3.391734  3.306811
+## 1003_s_at  1.091264  1.076470  1.132558  1.096870  1.138386  1.061184
+## 1004_at    6.456285  6.824862  7.304803  8.757756  6.695295  7.372185
+## 1005_at    5.176975  4.874563  4.097580  9.250585  7.657463  7.683677
+##           CLL23.CEL CLL24.CEL CLL2.CEL CLL3.CEL CLL4.CEL CLL5.CEL CLL6.CEL
+## 1000_at    5.480752  5.216033 5.966942 5.397508 5.281720 5.414718 5.460626
+## 1001_at    2.264434  2.344079 2.350073 2.406846 2.341961 2.372928 2.356978
+## 1002_f_at  3.341444  3.798335 3.427736 3.453564 3.412944 3.411922 3.396466
+## 1003_s_at  1.046188  1.082169 1.501367 1.191339 1.139510 1.153548 1.135671
+## 1004_at    7.616749  6.839187 7.545673 8.802729 7.307752 7.491507 8.063202
+## 1005_at    8.700667  5.546996 9.611601 5.732182 6.483191 6.072558 9.919125
+##           CLL7.CEL CLL8.CEL CLL9.CEL
+## 1000_at   5.897821 5.253883 5.214155
+## 1001_at   2.222276 2.254772 2.358544
+## 1002_f_at 3.247276 3.255148 3.365746
+## 1003_s_at 1.074631 1.166247 1.151184
+## 1004_at   7.014543 8.019108 7.432331
+## 1005_at   5.149411 4.989604 5.339848
+
+help(exp)
+
+## starting httpd help server ... done
+</code></pre>
+<h1 id="4安装并了解-hgu95av2db-包"><a class="markdownIt-Anchor" href="#4安装并了解-hgu95av2db-包"></a> 4安装并了解 hgu95av2.db 包</h1>
+<p>看看 ls(“package:hgu95av2.db”) 后 显示的那些变量</p>
+<pre><code>library(hgu95av2.db)
+ls(&quot;package:hgu95av2.db&quot;)
+
+##  [1] &quot;hgu95av2&quot;              &quot;hgu95av2.db&quot;          
+##  [3] &quot;hgu95av2_dbconn&quot;       &quot;hgu95av2_dbfile&quot;      
+##  [5] &quot;hgu95av2_dbInfo&quot;       &quot;hgu95av2_dbschema&quot;    
+##  [7] &quot;hgu95av2ACCNUM&quot;        &quot;hgu95av2ALIAS2PROBE&quot;  
+##  [9] &quot;hgu95av2CHR&quot;           &quot;hgu95av2CHRLENGTHS&quot;   
+## [11] &quot;hgu95av2CHRLOC&quot;        &quot;hgu95av2CHRLOCEND&quot;    
+## [13] &quot;hgu95av2ENSEMBL&quot;       &quot;hgu95av2ENSEMBL2PROBE&quot;
+## [15] &quot;hgu95av2ENTREZID&quot;      &quot;hgu95av2ENZYME&quot;       
+## [17] &quot;hgu95av2ENZYME2PROBE&quot;  &quot;hgu95av2GENENAME&quot;     
+## [19] &quot;hgu95av2GO&quot;            &quot;hgu95av2GO2ALLPROBES&quot; 
+## [21] &quot;hgu95av2GO2PROBE&quot;      &quot;hgu95av2MAP&quot;          
+## [23] &quot;hgu95av2MAPCOUNTS&quot;     &quot;hgu95av2OMIM&quot;         
+## [25] &quot;hgu95av2ORGANISM&quot;      &quot;hgu95av2ORGPKG&quot;       
+## [27] &quot;hgu95av2PATH&quot;          &quot;hgu95av2PATH2PROBE&quot;   
+## [29] &quot;hgu95av2PFAM&quot;          &quot;hgu95av2PMID&quot;         
+## [31] &quot;hgu95av2PMID2PROBE&quot;    &quot;hgu95av2PROSITE&quot;      
+## [33] &quot;hgu95av2REFSEQ&quot;        &quot;hgu95av2SYMBOL&quot;       
+## [35] &quot;hgu95av2UNIGENE&quot;       &quot;hgu95av2UNIPROT&quot;
+
+ls(hgu95av2.db)
+
+## [1] &quot;conn&quot;        &quot;packageName&quot;
+
+head(toTable(hgu95av2SYMBOL))
+
+##    probe_id  symbol
+## 1   1000_at   MAPK3
+## 2   1001_at    TIE1
+## 3 1002_f_at CYP2C19
+## 4 1003_s_at   CXCR5
+## 5   1004_at   CXCR5
+## 6   1005_at   DUSP1
+
+ids &lt;- toTable(hgu95av2SYMBOL)
+</code></pre>
+<h2 id="以下几种方法获取tp53的探针名称"><a class="markdownIt-Anchor" href="#以下几种方法获取tp53的探针名称"></a> 以下几种方法获取TP53的探针名称</h2>
+<h3 id="1-subset函数"><a class="markdownIt-Anchor" href="#1-subset函数"></a> 1 subset函数</h3>
+<pre><code>a1 &lt;- subset(ids, ids$symbol=='TP53')
+</code></pre>
+<h3 id="2-grep函数"><a class="markdownIt-Anchor" href="#2-grep函数"></a> 2 grep函数</h3>
+<pre><code>a4 &lt;- ids[grep(&quot;^TP53$&quot;, ids$symbol),]
+</code></pre>
+<h3 id="3-filter函数依赖dplyr包"><a class="markdownIt-Anchor" href="#3-filter函数依赖dplyr包"></a> 3 filter函数(依赖dplyr包)</h3>
+<pre><code>a5 &lt;- filter(ids, ids$symbol=='TP53')
+</code></pre>
+<p>理解探针与基因的对应关系，总共多少个基因，基因最多对应多少个探针，<br>
+是哪些基因，是不是因为这些基因很长，所以在其上面设计多个探针呢？总共多少gene</p>
+<pre><code>length(unique(ids$symbol))
+
+## [1] 8585
+</code></pre>
+<p>对应探针多的是那些gene</p>
+<pre><code>ids_fre &lt;- data.frame(table(ids$symbol))
+tail(ids_fre[order(ids_fre$Freq),])
+
+##        Var1 Freq
+## 8365 YME1L1    7
+## 2809  GAPDH    8
+## 3638 INPP4A    8
+## 4720    MYB    8
+## 6010 PTGER3    8
+## 7339  STAT1    8
+</code></pre>
+<p>或者用sort命令</p>
+<pre><code>tail(sort(table(ids$symbol)))
+
+## 
+## YME1L1  GAPDH INPP4A    MYB PTGER3  STAT1 
+##      7      8      8      8      8      8
+</code></pre>
+<p>不管是Agilent芯片，还是Affymetrix芯片，上面设计的探针都非常短。<br>
+最长的如Agilent芯片上的探针，往往都是60bp，但是往往一个基因的长<br>
+度都好几Kb。因此一般多个探针对应一个基因，取最大表达值探针来作为<br>
+基因的表达量。 # 7.找到芯片有而hgu95av2.db中没有对应基因名的探针<br>
+第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵， 找到那些不在<br>
+hgu95av2.db 包收录的对应着SYMBOL的探针。<br>
+提示：有1165个探针是没有对应基因名字的。 ## 第一种方法：match函数</p>
+<pre><code>dim(exp)
+
+## [1] 12625    22
+
+dim(hgu95av2SYMBOL)
+
+## [1] 11460     2
+
+b1 &lt;- exp[-match(ids$probe_id, rownames(exp)),]
+dim(b1)
+
+## [1] 1165   22
+</code></pre>
+<h2 id="第二种方法in函数"><a class="markdownIt-Anchor" href="#第二种方法in函数"></a> 第二种方法:%in%函数</h2>
+<pre><code>b2 &lt;- exp[!(rownames(exp) %in% ids$probe_id),]
+b1==b2
+</code></pre>
+<h1 id="8-过滤表达矩阵删除注释包中没有对应基因名的探针"><a class="markdownIt-Anchor" href="#8-过滤表达矩阵删除注释包中没有对应基因名的探针"></a> 8 过滤表达矩阵：删除注释包中没有对应基因名的探针</h1>
+<p>过滤表达矩阵，删除那1165个没有对应基因名字的探针。</p>
+<pre><code>exp_filter_no_symbol &lt;- as.data.frame(exp[match(ids$probe_id, rownames(exp)),])
+exp_filter_no_symbol2 &lt;- as.data.frame(exp[rownames(exp) %in% ids$probe_id,])
+</code></pre>
+<h1 id="9-整合表达矩阵多个探针对应一个基因的情况下只保留在所有样本里面平均表达量最大的那个探针"><a class="markdownIt-Anchor" href="#9-整合表达矩阵多个探针对应一个基因的情况下只保留在所有样本里面平均表达量最大的那个探针"></a> 9 整合表达矩阵，多个探针对应一个基因的情况下，只保留在所有样本里面平均表达量最大的那个探针。</h1>
+<p>提示，理解 tapply,by,aggregate,split 函数 ,<br>
+首先对每个基因找到最大表达量的探针。 然后根据得到探针去过滤原始表达矩阵<br>
+这种方法能够一定程度上增加差异基因的数目，但也容易造成假阳性的结果<br>
+<a href="https://blog.csdn.net/tommyhechina/article/details/80468361" target="_blank" rel="noopener">https://blog.csdn.net/tommyhechina/article/details/80468361</a><br>
+合并探针，先看有无NA值，若有，可以删除或填充<br>
+先检查有无，若返回值&gt;0,说明有NA值。</p>
+<pre><code>length(which(is.na(exp_filter_no_symbol)))
+
+## [1] 0
+</code></pre>
+<p>结果是0，说明没有NA值。如果有则用impute包来进行填充 exp_symbol&lt;-<br>
+impute.knn(exp_symbol)$data 下面开始进行合并，用aggregate命令</p>
+<pre><code>ids &lt;- toTable(hgu95av2SYMBOL)
+ids$median &lt;- apply(exp_filter_no_symbol, 1, median)
+ids &lt;- ids[order(ids$symbol, ids$median, decreasing = T),]
+ids_filtered &lt;- ids[!duplicated(ids$symbol),]
+dim(ids_filtered)
+
+## [1] 8585    3
+</code></pre>
+<h1 id="10-过滤后的表达矩阵行名改为symbol"><a class="markdownIt-Anchor" href="#10-过滤后的表达矩阵行名改为symbol"></a> 10 过滤后的表达矩阵行名改为SYMBOL</h1>
+<p>把过滤后的表达矩阵更改行名为基因的symbol，因为这个时候探针和基因是一对一关系了。</p>
+<pre><code>exp_filter_no_symbol$probe_id &lt;- rownames(exp_filter_no_symbol)
+exp_ids &lt;- merge(ids_filtered, exp_filter_no_symbol, by ='probe_id' )
+rownames(exp_ids) &lt;- exp_ids$symbol
+exp_sym &lt;- exp_ids[,-c(1:3)]
+</code></pre>
+<h1 id="11-画第一个样本和所有样本的基于表达量的图"><a class="markdownIt-Anchor" href="#11-画第一个样本和所有样本的基于表达量的图"></a> 11 画第一个样本和所有样本的基于表达量的图</h1>
+<p>对第10步得到的表达矩阵进行探索，先画第一个样本的所有基因的表达量的boxplot,hist,density<br>
+， 然后画所有样本的 这些图<br>
+参考：<a href="http://bio-info-trainee.com/tmp/basic_visualization_for_expression_matrix.html" target="_blank" rel="noopener">http://bio-info-trainee.com/tmp/basic_visualization_for_expression_matrix.html</a><br>
+理解ggplot2的绘图语法，数据和图形元素的映射关系</p>
+<pre><code>boxplot(exp_sym$CLL11.CEL)
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-17-1.png" alt></p>
+<pre><code>boxplot(exp_sym)
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-17-2.png" alt><br>
+用ggplot2来画 ggplot2画图要改变数据形式</p>
+<pre><code>library(reshape2)
+exp_g &lt;- melt(exp_ids[,-c(1,3)], id.vars = 'symbol')
+exp_g$group &lt;- rep(group$Disease, each = nrow(exp_sym))
+colnames(exp_g)[2] &lt;- 'sample'
+head(exp_g)
+
+##    symbol    sample    value    group
+## 1   MAPK3 CLL11.CEL 5.743132 progres.
+## 2    TIE1 CLL11.CEL 2.285143 progres.
+## 3 CYP2C19 CLL11.CEL 3.309294 progres.
+## 4   CXCR5 CLL11.CEL 7.544884 progres.
+## 5   DUSP1 CLL11.CEL 5.083793 progres.
+## 6   MMP10 CLL11.CEL 3.252213 progres.
+</code></pre>
+<p>第一个样本的</p>
+<pre><code>library(ggplot2)
+
+## Registered S3 methods overwritten by 'ggplot2':
+##   method         from 
+##   [.quosures     rlang
+##   c.quosures     rlang
+##   print.quosures rlang
+
+sample_1 &lt;- subset(exp_g, exp_g$sample=='CLL2.CEL')
+head(sample_1)
+
+##         symbol   sample    value  group
+## 120191   MAPK3 CLL2.CEL 5.966942 stable
+## 120192    TIE1 CLL2.CEL 2.350073 stable
+## 120193 CYP2C19 CLL2.CEL 3.427736 stable
+## 120194   CXCR5 CLL2.CEL 7.545673 stable
+## 120195   DUSP1 CLL2.CEL 9.611601 stable
+## 120196   MMP10 CLL2.CEL 3.380044 stable
+
+p_s1 &lt;- ggplot(sample_1, aes(x = sample, y = value, fill = 'lightblue'))
+p_s1 + geom_boxplot()
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-19-1.png" alt></p>
+<pre><code>p_s1 + geom_violin()+geom_boxplot(fill = 'white')
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-19-2.png" alt></p>
+<pre><code>ggplot(sample_1, aes(x = value, fill = 'lightblue'))+
+  geom_histogram(bins = 500)
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-19-3.png" alt></p>
+<pre><code>ggplot(sample_1, aes(x = value, fill = 'lightblue'))+
+  geom_density()
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-19-4.png" alt><br>
+下面是所有样本的</p>
+<pre><code>p &lt;- ggplot(exp_g, aes(x = sample, y = value, fill = group))
+p + geom_boxplot()
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-20-1.png" alt></p>
+<pre><code>p + geom_violin()
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-20-2.png" alt></p>
+<pre><code>ggplot(exp_g, aes(x=value,fill = group))+ geom_histogram(bins = 500)+
+       facet_wrap(~group, nrow = 5)
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-20-3.png" alt></p>
+<pre><code>ggplot(exp_g, aes(x=value,fill = group))+ geom_density()+
+  facet_wrap(~group, nrow = 5)
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-20-4.png" alt> # 12<br>
+理解统计学指标mean,median,max,min,sd,var,mad<br>
+并计算出每个基因在所有样本的这些统计学指标，最后按照mad值排序，取top 50<br>
+mad值的基因，得到列表</p>
+<pre><code>head(exp_sym)
+
+##         CLL11.CEL CLL12.CEL CLL13.CEL CLL14.CEL CLL15.CEL CLL16.CEL
+## MAPK3    5.743132  6.219412  5.523328  5.340477  5.229904  4.920686
+## TIE1     2.285143  2.291229  2.287986  2.295313  2.662170  2.278040
+## CYP2C19  3.309294  3.318466  3.354423  3.327130  3.365113  3.568353
+## CXCR5    7.544884  7.671801  7.474025  7.152482  6.902932  7.368660
+## DUSP1    5.083793  7.610593  7.631311  6.518594  5.059087  4.855161
+## MMP10    3.252213  3.288078  3.264168  3.217279  3.377575  3.365157
+##         CLL17.CEL CLL18.CEL CLL19.CEL CLL20.CEL CLL21.CEL CLL22.CEL
+## MAPK3    5.325348  4.826131  5.212387  5.285830  5.581859  6.251678
+## TIE1     2.350796  2.325163  2.432635  2.256547  2.348389  2.263849
+## CYP2C19  3.502440  3.394410  3.617099  3.279726  3.391734  3.306811
+## CXCR5    6.456285  6.824862  7.304803  8.757756  6.695295  7.372185
+## DUSP1    5.176975  4.874563  4.097580  9.250585  7.657463  7.683677
+## MMP10    3.451987  3.392632  3.574332  3.249886  3.269541  3.213493
+##         CLL23.CEL CLL24.CEL CLL2.CEL CLL3.CEL CLL4.CEL CLL5.CEL CLL6.CEL
+## MAPK3    5.480752  5.216033 5.966942 5.397508 5.281720 5.414718 5.460626
+## TIE1     2.264434  2.344079 2.350073 2.406846 2.341961 2.372928 2.356978
+## CYP2C19  3.341444  3.798335 3.427736 3.453564 3.412944 3.411922 3.396466
+## CXCR5    7.616749  6.839187 7.545673 8.802729 7.307752 7.491507 8.063202
+## DUSP1    8.700667  5.546996 9.611601 5.732182 6.483191 6.072558 9.919125
+## MMP10    3.330000  3.545541 3.380044 3.426736 3.311255 3.411775 3.376011
+##         CLL7.CEL CLL8.CEL CLL9.CEL
+## MAPK3   5.897821 5.253883 5.214155
+## TIE1    2.222276 2.254772 2.358544
+## CYP2C19 3.247276 3.255148 3.365746
+## CXCR5   7.014543 8.019108 7.432331
+## DUSP1   5.149411 4.989604 5.339848
+## MMP10   3.218438 3.271324 3.291604
+
+exp_mean &lt;- apply(exp_sym, 1, mean)
+exp_median &lt;- apply(exp_sym,1, median)
+exp_max &lt;- apply(exp_sym, 1, max)            
+exp_min &lt;- apply(exp_sym, 1, min)
+exp_sd &lt;- apply(exp_sym, 1, sd)
+exp_var &lt;- apply(exp_sym, 1, var)
+exp_md &lt;- apply(exp_sym, 1, mad)
+exp_sta &lt;- data.frame(exp_mean, exp_median, exp_max, exp_min, exp_sd, exp_var, exp_md)
+md_order &lt;- exp_sta[order(exp_sta$exp_md, decreasing = T),]
+md_order[1:50,1:5]
+
+##           exp_mean exp_median   exp_max  exp_min    exp_sd
+## FAM30A    5.708006   6.649724  9.901761 2.422295 2.7988082
+## IGF2BP3   4.801569   4.659068  8.899667 2.335350 2.2955054
+## DMD       6.791259   7.036325 10.653183 3.060286 2.5247064
+## TCF7      7.665692   7.697969 10.976634 4.547559 2.1667457
+## SLAMF1    5.385746   5.392873  8.385662 3.016306 1.9537439
+## FOS       7.204708   7.009703 10.831309 3.581185 2.1980961
+## LGALS1    6.612549   6.738502  9.275395 2.548286 2.0956955
+## IGLC1    10.912833  10.695933 14.895714 6.516660 2.6146697
+## ZAP70     5.395807   5.223290  7.581484 3.230575 1.5860361
+## FCN1      5.549464   5.280685  9.321022 3.221669 1.8535899
+## LHFPL2    5.880325   5.831304  8.627377 3.202529 1.7771356
+## HBB      10.451111  10.835714 13.089985 3.556112 2.6459011
+## S100A8    7.054067   7.125176  9.789312 3.976454 1.6721426
+## GUSBP11   9.152709   9.136234 12.387608 6.296077 1.9078900
+## COBLL1    6.307016   6.672768  8.602673 3.764972 1.7079344
+## VIPR1     5.001816   4.783675  7.947431 3.013597 1.7173512
+## PCDH9     7.564731   8.589865 10.379183 2.128020 2.8787582
+## IGH       7.504659   7.615107  9.961620 4.058258 1.6876278
+## ZNF804A   5.482021   4.933040  8.417146 3.489773 1.6262582
+## TRIB2     5.582121   5.382651  8.275038 3.262417 1.6285227
+## OAS1      5.781610   5.841878  7.812439 2.844634 1.5555384
+## CCL3      4.955042   4.528829  8.200438 2.892649 1.6758945
+## GNLY      5.758612   5.702251  7.874737 3.112976 1.4291897
+## CYBB      5.465935   4.990295  7.925110 3.741134 1.5086211
+## VAMP5     5.129844   5.224719  6.787208 3.168429 1.2736710
+## RNASE6    7.502004   7.475790  9.761536 4.561619 1.3692587
+## RGS2      8.665894   8.690715 11.060867 5.593852 1.6673174
+## PLXNC1    6.152678   6.011995  9.936706 4.282411 1.4519185
+## CAPG      7.147032   7.287538  9.311853 4.295201 1.3599095
+## RBM38     5.625046   5.984977  7.712013 2.364198 1.5115862
+## VCAN      5.724099   5.551630  9.690421 3.425727 1.6784676
+## APBB2     5.028141   4.991633  7.223220 3.534210 1.2951444
+## ARF6      9.261574   9.274190 11.084527 7.417333 1.1470937
+## TGFBI     7.719464   8.355828 10.336590 3.705677 2.1598336
+## NR4A2     5.332218   4.905362 10.162592 3.535849 1.7782290
+## S100A9    5.283652   5.121900  9.274989 3.360444 1.5913846
+## ZNF266    9.162509   8.963549 10.825413 7.465138 1.1059916
+## TSPYL2    5.334349   4.961360  9.606263 3.519564 1.5168915
+## CLEC2B    6.703088   6.200192 10.689725 4.346883 1.6435564
+## FLNA      7.261863   7.427031  8.892456 4.910564 1.2846904
+## H1FX      9.481071   9.371750 11.448482 6.315160 1.4222048
+## DUSP5     5.707280   5.662890  8.399445 3.096216 1.4659308
+## DUSP6     6.220190   6.163704  9.349607 3.924092 1.6169735
+## ANXA4     6.285188   6.575309  8.848398 3.290936 1.6485526
+## LPL       5.451203   4.535271  8.736220 3.497206 1.8272643
+## THEMIS2   7.060804   6.925227  8.676046 5.638975 0.9956062
+## P2RY14    5.503758   5.449599  9.268856 2.776078 1.7700218
+## ARHGAP44  5.823372   5.937855  8.171374 3.285610 1.3502894
+## TNFSF9    5.038986   4.935596  7.080714 2.827961 1.2324676
+## PFN2      5.427243   5.891385  7.621100 2.987904 1.3889489
+</code></pre>
+<h1 id="13-提取基因的表达矩阵子集绘制热图"><a class="markdownIt-Anchor" href="#13-提取基因的表达矩阵子集绘制热图"></a> 13 提取基因的表达矩阵子集，绘制热图</h1>
+<p>根据第12步骤得到top 50<br>
+mad值的基因列表来取表达矩阵的子集，并且热图可视化子表达矩阵。试试看其它5种热图的包的不同效果。</p>
+<pre><code>names_50 &lt;- rownames(md_order[1:50,])
+exp_mad_top50 &lt;- exp_sym[match(names_50, rownames(exp_sym)),]
+pheatmap::pheatmap(log2(exp_mad_top50))
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-22-1.png" alt></p>
+<pre><code>pheatmap::pheatmap(exp_mad_top50, scale=c(&quot;row&quot;))
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-22-2.png" alt> # 14<br>
+取N个指标的交集并可视化：UpSetR包<br>
+取不同统计学指标mean,median,max,mean,sd,var,mad的各top50基因列表，<br>
+使用UpSetR包来看他们之间的overlap情况</p>
+<pre><code>mean_50 &lt;- head(sort(exp_mean, decreasing = T),50)
+median_50 &lt;- head(sort(exp_median, decreasing = T),50)
+</code></pre>
+<p>写函数完成上述重复问题问题</p>
+<pre><code>sta_50 &lt;- function(x){
+  x &lt;- head(sort((apply(exp_sym, 1, x)), decreasing = T),50)
+  x_50 &lt;- x
+  return(names((x_50)))
+}
+library('UpSetR')
+</code></pre>
+<p>取不含重复的并集</p>
+<pre><code>sta_50_all &lt;- unique(c(sta_50(mean), sta_50(median),sta_50(max),sta_50(min),sta_50(sd),sta_50(var), sta_50(mad)))
+</code></pre>
+<p>转成upset需要的格式，也就是1和0分别代表</p>
+<pre><code>u_mean &lt;- ifelse(sta_50_all %in% sta_50(mean), 1, 0)
+</code></pre>
+<p>再写个函数</p>
+<pre><code>upset_sta &lt;- function(x){
+   x &lt;- ifelse(sta_50_all %in% sta_50(x), 1, 0)
+   u_x &lt;- x
+   return(u_x)
+}
+
+upset_all &lt;- data.frame(sta_50_all, upset_sta(mean),upset_sta(median),
+                        upset_sta(max),upset_sta(min),upset_sta(sd),upset_sta(var),upset_sta(mad))
+?upset
+upset(upset_all, nsets = 7, matrix.color = 'black',main.bar.color = 'green',
+      sets.bar.color = 'red',point.size = 2, line.size = 0.8,
+      shade.color = 'red', matrix.dot.alpha = 0.5) 
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-28-1.png" alt></p>
+<h1 id="15-提取表型数据"><a class="markdownIt-Anchor" href="#15-提取表型数据"></a> 15 提取表型数据</h1>
+<p>在第二步的基础上面提取CLL包里面的data(sCLLex) 数据对象的样本的表型数据。</p>
+<pre><code>data(&quot;sCLLex&quot;)
+pData(sCLLex)
+
+##           SampleID  Disease
+## CLL11.CEL    CLL11 progres.
+## CLL12.CEL    CLL12   stable
+## CLL13.CEL    CLL13 progres.
+## CLL14.CEL    CLL14 progres.
+## CLL15.CEL    CLL15 progres.
+## CLL16.CEL    CLL16 progres.
+## CLL17.CEL    CLL17   stable
+## CLL18.CEL    CLL18   stable
+## CLL19.CEL    CLL19 progres.
+## CLL20.CEL    CLL20   stable
+## CLL21.CEL    CLL21 progres.
+## CLL22.CEL    CLL22   stable
+## CLL23.CEL    CLL23 progres.
+## CLL24.CEL    CLL24   stable
+## CLL2.CEL      CLL2   stable
+## CLL3.CEL      CLL3 progres.
+## CLL4.CEL      CLL4 progres.
+## CLL5.CEL      CLL5 progres.
+## CLL6.CEL      CLL6 progres.
+## CLL7.CEL      CLL7 progres.
+## CLL8.CEL      CLL8 progres.
+## CLL9.CEL      CLL9   stable
+</code></pre>
+<h1 id="16-对表达矩阵进行聚类画图添加临床表型数据"><a class="markdownIt-Anchor" href="#16-对表达矩阵进行聚类画图添加临床表型数据"></a> 16 对表达矩阵进行聚类画图，添加临床表型数据</h1>
+<p>对所有样本的表达矩阵进行聚类并且绘图，然后添加样本的临床表型数据信息(更改样本名)<br>
+#前面</p>
+<pre><code>head(exp_sym)
+
+##         CLL11.CEL CLL12.CEL CLL13.CEL CLL14.CEL CLL15.CEL CLL16.CEL
+## MAPK3    5.743132  6.219412  5.523328  5.340477  5.229904  4.920686
+## TIE1     2.285143  2.291229  2.287986  2.295313  2.662170  2.278040
+## CYP2C19  3.309294  3.318466  3.354423  3.327130  3.365113  3.568353
+## CXCR5    7.544884  7.671801  7.474025  7.152482  6.902932  7.368660
+## DUSP1    5.083793  7.610593  7.631311  6.518594  5.059087  4.855161
+## MMP10    3.252213  3.288078  3.264168  3.217279  3.377575  3.365157
+##         CLL17.CEL CLL18.CEL CLL19.CEL CLL20.CEL CLL21.CEL CLL22.CEL
+## MAPK3    5.325348  4.826131  5.212387  5.285830  5.581859  6.251678
+## TIE1     2.350796  2.325163  2.432635  2.256547  2.348389  2.263849
+## CYP2C19  3.502440  3.394410  3.617099  3.279726  3.391734  3.306811
+## CXCR5    6.456285  6.824862  7.304803  8.757756  6.695295  7.372185
+## DUSP1    5.176975  4.874563  4.097580  9.250585  7.657463  7.683677
+## MMP10    3.451987  3.392632  3.574332  3.249886  3.269541  3.213493
+##         CLL23.CEL CLL24.CEL CLL2.CEL CLL3.CEL CLL4.CEL CLL5.CEL CLL6.CEL
+## MAPK3    5.480752  5.216033 5.966942 5.397508 5.281720 5.414718 5.460626
+## TIE1     2.264434  2.344079 2.350073 2.406846 2.341961 2.372928 2.356978
+## CYP2C19  3.341444  3.798335 3.427736 3.453564 3.412944 3.411922 3.396466
+## CXCR5    7.616749  6.839187 7.545673 8.802729 7.307752 7.491507 8.063202
+## DUSP1    8.700667  5.546996 9.611601 5.732182 6.483191 6.072558 9.919125
+## MMP10    3.330000  3.545541 3.380044 3.426736 3.311255 3.411775 3.376011
+##         CLL7.CEL CLL8.CEL CLL9.CEL
+## MAPK3   5.897821 5.253883 5.214155
+## TIE1    2.222276 2.254772 2.358544
+## CYP2C19 3.247276 3.255148 3.365746
+## CXCR5   7.014543 8.019108 7.432331
+## DUSP1   5.149411 4.989604 5.339848
+## MMP10   3.218438 3.271324 3.291604
+
+group_list &lt;- as.character(pData(sCLLex)[,2])
+colnames(exp_sym) &lt;- paste(group_list, 1:22, sep = '')
+head(exp_sym)
+
+##         progres.1  stable2 progres.3 progres.4 progres.5 progres.6
+## MAPK3    5.743132 6.219412  5.523328  5.340477  5.229904  4.920686
+## TIE1     2.285143 2.291229  2.287986  2.295313  2.662170  2.278040
+## CYP2C19  3.309294 3.318466  3.354423  3.327130  3.365113  3.568353
+## CXCR5    7.544884 7.671801  7.474025  7.152482  6.902932  7.368660
+## DUSP1    5.083793 7.610593  7.631311  6.518594  5.059087  4.855161
+## MMP10    3.252213 3.288078  3.264168  3.217279  3.377575  3.365157
+##          stable7  stable8 progres.9 stable10 progres.11 stable12
+## MAPK3   5.325348 4.826131  5.212387 5.285830   5.581859 6.251678
+## TIE1    2.350796 2.325163  2.432635 2.256547   2.348389 2.263849
+## CYP2C19 3.502440 3.394410  3.617099 3.279726   3.391734 3.306811
+## CXCR5   6.456285 6.824862  7.304803 8.757756   6.695295 7.372185
+## DUSP1   5.176975 4.874563  4.097580 9.250585   7.657463 7.683677
+## MMP10   3.451987 3.392632  3.574332 3.249886   3.269541 3.213493
+##         progres.13 stable14 stable15 progres.16 progres.17 progres.18
+## MAPK3     5.480752 5.216033 5.966942   5.397508   5.281720   5.414718
+## TIE1      2.264434 2.344079 2.350073   2.406846   2.341961   2.372928
+## CYP2C19   3.341444 3.798335 3.427736   3.453564   3.412944   3.411922
+## CXCR5     7.616749 6.839187 7.545673   8.802729   7.307752   7.491507
+## DUSP1     8.700667 5.546996 9.611601   5.732182   6.483191   6.072558
+## MMP10     3.330000 3.545541 3.380044   3.426736   3.311255   3.411775
+##         progres.19 progres.20 progres.21 stable22
+## MAPK3     5.460626   5.897821   5.253883 5.214155
+## TIE1      2.356978   2.222276   2.254772 2.358544
+## CYP2C19   3.396466   3.247276   3.255148 3.365746
+## CXCR5     8.063202   7.014543   8.019108 7.432331
+## DUSP1     9.919125   5.149411   4.989604 5.339848
+## MMP10     3.376011   3.218438   3.271324 3.291604
+
+t.exp &lt;- t(exp_sym)
+t.exp[1:5,1:5]
+
+##              MAPK3     TIE1  CYP2C19    CXCR5    DUSP1
+## progres.1 5.743132 2.285143 3.309294 7.544884 5.083793
+## stable2   6.219412 2.291229 3.318466 7.671801 7.610593
+## progres.3 5.523328 2.287986 3.354423 7.474025 7.631311
+## progres.4 5.340477 2.295313 3.327130 7.152482 6.518594
+## progres.5 5.229904 2.662170 3.365113 6.902932 5.059087
+
+hc &lt;- hclust(dist(t.exp))
+plot(as.dendrogram(hc))
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-30-1.png" alt><br>
+用factoextra包画</p>
+<pre><code>exp_cluster &lt;- t(exp_sym)
+exp_clust_dist &lt;- dist(exp_cluster, method = 'euclidean')
+hc &lt;- hclust(exp_clust_dist,'ward.D')
+
+library(factoextra)
+
+## Welcome! Related Books: `Practical Guide To Cluster Analysis in R` at https://goo.gl/13EFCZ
+
+fviz_dend(hc, k=4, cex = 0.5,
+          k_colors = c(&quot;#2E9FDF&quot;, &quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;),
+          color_labels_by_k = TRUE, rect = TRUE)
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-32-1.png" alt> # 17<br>
+对所有样本的表达矩阵进行PCA分析并且绘图，同样要添加表型信息</p>
+<pre><code>library(devtools)
+install_github('sinhrks/ggfortify')
+
+## Skipping install of 'ggfortify' from a github remote, the SHA1 (107768f6) has not changed since last install.
+##   Use `force = TRUE` to force installation
+
+library(ggfortify)
+df &lt;- as.data.frame(t(exp_sym))
+df$group &lt;- group$Disease
+autoplot(prcomp(df[,1:(ncol(df)-1)]), data=df, 
+         label = TRUE, colour = 'group')
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-33-1.png" alt><br>
+#18.根据表达矩阵及样本分组信息进行批量T检验，得到检验结果表格</p>
+<pre><code>dat &lt;- exp_sym
+group_list &lt;- as.factor(group_list)
+group1 &lt;- which(group_list == levels(group_list)[1])
+group2 &lt;- which(group_list == levels(group_list)[2])
+dat1 &lt;- dat[,group1]
+dat2 &lt;- dat[,group2]
+dat &lt;- cbind(dat1, dat2)
+pvals &lt;- apply(dat, 1, function(x){
+  t.test(as.numeric(x)~group_list)$p.value
+})
+head(pvals)
+
+##      MAPK3       TIE1    CYP2C19      CXCR5      DUSP1      MMP10 
+## 0.65221728 0.32547921 0.10930650 0.52972986 0.11181740 0.08771106
+
+p.adj &lt;- p.adjust(pvals, method = 'BH')
+avg_1 &lt;- log2(rowMeans(dat1))
+
+## Warning: NaNs produced
+
+avg_2 &lt;- log2(rowMeans(dat2))
+
+## Warning: NaNs produced
+
+log2FC &lt;- avg_2-avg_1
+deg_t.test &lt;- cbind(avg_1, avg_2, log2FC, pvals, p.adj)
+deg_t.test &lt;- deg_t.test[order(deg_t.test[,4]),]
+head(deg_t.test)
+
+##           avg_1    avg_2      log2FC        pvals     p.adj
+## ST14   2.491256 2.364128 -0.12712815 0.0001236326 0.4156259
+## LTB    2.961047 2.807431 -0.15361585 0.0002103122 0.4156259
+## CORO1A 3.239158 3.149793 -0.08936553 0.0002370691 0.4156259
+## PPM1D  2.356110 2.425399  0.06928926 0.0004783848 0.4156259
+## ORAI2  2.459287 2.199910 -0.25937653 0.0005244971 0.4156259
+## GNAI2  3.319264 3.275868 -0.04339579 0.0005434369 0.4156259
+
+class(deg_t.test)
+
+## [1] &quot;matrix&quot;
+</code></pre>
+<h1 id="19使用limma包对表达矩阵及样本分组信息进行差异分析得到差异分析表格"><a class="markdownIt-Anchor" href="#19使用limma包对表达矩阵及样本分组信息进行差异分析得到差异分析表格"></a> 19.使用limma包对表达矩阵及样本分组信息进行差异分析，得到差异分析表格，</h1>
+<p>重点看logFC和P值，画个火山图(就是logFC和-log10(P值)的散点图)。 ## 1<br>
+构建设计矩阵design matrix</p>
+<pre><code>library(limma)
+
+## 
+## Attaching package: 'limma'
+
+## The following object is masked from 'package:BiocGenerics':
+## 
+##     plotMA
+
+design &lt;- model.matrix(~0+factor(group_list))
+colnames(design) &lt;- levels(factor(group_list))
+rownames(design) &lt;- colnames(exp_sym)
+design
+
+##            progres. stable
+## progres.1         1      0
+## stable2           0      1
+## progres.3         1      0
+## progres.4         1      0
+## progres.5         1      0
+## progres.6         1      0
+## stable7           0      1
+## stable8           0      1
+## progres.9         1      0
+## stable10          0      1
+## progres.11        1      0
+## stable12          0      1
+## progres.13        1      0
+## stable14          0      1
+## stable15          0      1
+## progres.16        1      0
+## progres.17        1      0
+## progres.18        1      0
+## progres.19        1      0
+## progres.20        1      0
+## progres.21        1      0
+## stable22          0      1
+## attr(,&quot;assign&quot;)
+## [1] 1 1
+## attr(,&quot;contrasts&quot;)
+## attr(,&quot;contrasts&quot;)$`factor(group_list)`
+## [1] &quot;contr.treatment&quot;
+
+fit &lt;- lmFit(exp_sym, design)
+</code></pre>
+<h2 id="2-构建比较矩阵"><a class="markdownIt-Anchor" href="#2-构建比较矩阵"></a> 2 构建比较矩阵</h2>
+<pre><code>contrast.matrix &lt;- makeContrasts(paste0(unique(group_list), 
+                            collapse = '-'), levels = design)
+fit2 &lt;- contrasts.fit(fit, contrast.matrix)
+fit3 &lt;- eBayes(fit2)
+</code></pre>
+<h2 id="3差异表达矩阵获取"><a class="markdownIt-Anchor" href="#3差异表达矩阵获取"></a> 3差异表达矩阵获取</h2>
+<pre><code>mtx &lt;- topTable(fit3, coef = 1, n=Inf)
+DEG_mtx &lt;- na.omit(mtx)
+dim(mtx)
+
+## [1] 8585    6
+
+dim(DEG_mtx)
+
+## [1] 8585    6
+
+head(DEG_mtx)
+
+##              logFC  AveExpr         t      P.Value  adj.P.Val        B
+## TBC1D2B -1.0284628 5.620700 -5.837412 8.241439e-06 0.02237023 3.351806
+## CLIC1    0.9888221 9.954273  5.772861 9.560444e-06 0.02237023 3.230776
+## DLEU1    1.8301554 6.950685  5.740842 1.029277e-05 0.02237023 3.170506
+## SH3BP2  -1.3835699 4.463438 -5.735395 1.042294e-05 0.02237023 3.160238
+## GPM6A    2.5471980 6.915045  5.043131 5.269777e-05 0.08731675 1.821536
+## YTHDC2  -0.5187135 7.602354 -4.873850 7.879310e-05 0.08731675 1.485255
+
+#write.csv(DEG_mtx,&quot;DEG_mtx.csv&quot;,quote = F)
+</code></pre>
+<h2 id="4火山图"><a class="markdownIt-Anchor" href="#4火山图"></a> 4火山图</h2>
+<h3 id="第一步设定阈值界定上调下调和不表达的基因"><a class="markdownIt-Anchor" href="#第一步设定阈值界定上调下调和不表达的基因"></a> 第一步，设定阈值，界定上调下调和不表达的基因</h3>
+<pre><code>DEG &lt;- DEG_mtx
+logFC_cutoff &lt;- with(DEG, mean(abs(logFC))+2*sd(abs(logFC)))
+DEG$change = as.factor(ifelse(DEG$P.Value &lt; 0.05 &amp; abs(DEG$logFC) &gt; logFC_cutoff,
+                              ifelse(DEG$logFC &gt; logFC_cutoff ,'UP','DOWN'),'NOT')
+)
+</code></pre>
+<blockquote>
+<p>这是两个<code>ifelse</code>判断嵌套。先了解<code>ifelse</code>的结构，ifelse（条件，yes，no），如果满足条件，那么返回yes/或者执行yes所处的下一个命令；反之返回no<br>
+这里外层的ifelse中<code>DEG$P.Value &lt; 0.05 &amp; abs(DEG$logFC) &gt; logFC_cutoff</code>是判断条件，这个就是看p值和logFC是不是达到了他们设定的阈值【p是0.05，logFC是logFC_cutoff】，如果达到了就进行下一个ifelse，达不到就返回NOT；<br>
+第二层ifelse也是上来一个条件：<code>DEG$logFC &gt; logFC_cutoff</code>，如果达到了，就返回UP即上调基因，达不到就是下调DOWN<br>
+最后将判断结果转位因子型，得到DOWN、UP、NOT的三种因子</p>
+</blockquote>
+<h3 id="第二步设定火山图标题"><a class="markdownIt-Anchor" href="#第二步设定火山图标题"></a> 第二步，设定火山图标题</h3>
+<pre><code>this_tile &lt;- paste0('Cutoff for logFC is ',round(logFC_cutoff,3),
+                    '\nThe number of up gene is ',nrow(DEG[DEG$change =='UP',]) ,
+                    '\nThe number of down gene is ',nrow(DEG[DEG$change =='DOWN',])
+)
+</code></pre>
+<h3 id="第三步画图"><a class="markdownIt-Anchor" href="#第三步画图"></a> 第三步，画图</h3>
+<pre><code>g = ggplot(data=DEG, aes(x=logFC, y=-log10(P.Value), color=change)) +
+  geom_point(alpha=0.4, size=1.75) +
+  theme_set(theme_set(theme_bw(base_size=20)))+
+  xlab(&quot;log2 fold change&quot;) + ylab(&quot;-log10 p-value&quot;) +
+  ggtitle( this_tile ) + theme(plot.title = element_text(size=15,hjust = 0.5))+
+  scale_colour_manual(values = c('blue','black','red')) ## corresponding to the levels(res$change)
+print(g)
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-40-1.png" alt> ###<br>
+第四步，画个漂亮的图</p>
+<pre><code>P_volcano=ggplot(DEG,aes(x=logFC,y=-log10(P.Value)))+
+  geom_point(aes(color=change))+
+  #设置点的颜色
+  scale_color_manual(values =c(&quot;UP&quot; = &quot;red&quot;, &quot;DOWN&quot; = &quot;blue&quot;, &quot;NOT&quot; = &quot;grey&quot;))+
+  labs(x=&quot;log2FC&quot;,y=&quot;-log10FDR&quot;)+
+  #增加阈值线:分别对应FDR=0.05,|log2FC|=1
+  geom_hline(yintercept=-log10(0.05),linetype=4)+
+  geom_vline(xintercept=c(-1,1),linetype=4)+
+  xlim(-3,3)+
+  theme(plot.title = element_text(size = 25,face = &quot;bold&quot;, vjust = 0.5, hjust = 0.5),
+        legend.title = element_blank(),
+        legend.text = element_text(size = 18, face = &quot;bold&quot;),
+        legend.position = 'right',
+        legend.key.size=unit(0.8,'cm'),
+        axis.ticks.x=element_blank(),
+        axis.text.x=element_text(size = 15,face = &quot;bold&quot;, vjust = 0.5, hjust = 0.5),
+        axis.text.y=element_text(size = 15,face = &quot;bold&quot;, vjust = 0.5, hjust = 0.5),
+        axis.title.x = element_text(size = 20,face = &quot;bold&quot;, vjust = 0.5, hjust = 0.5),
+        axis.title.y = element_text(size = 20,face = &quot;bold&quot;, vjust = 0.5, hjust = 0.5),
+        panel.background = element_rect(fill = &quot;transparent&quot;,colour = &quot;black&quot;),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.background = element_rect(fill = &quot;transparent&quot;,colour = &quot;black&quot;))
+P_volcano
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-41-1.png" alt><br>
+#20.对T检验结果的P值和limma包差异分析的P值画散点图，看看哪些基因相差很大</p>
+<pre><code>deg_t.test &lt;- as.data.frame(deg_t.test)
+t_limma_pval &lt;- cbind(deg_t.test,DEG)[,c(4,9)]
+head(t_limma_pval)
+
+##               pvals      P.Value
+## ST14   0.0001236326 8.241439e-06
+## LTB    0.0002103122 9.560444e-06
+## CORO1A 0.0002370691 1.029277e-05
+## PPM1D  0.0004783848 1.042294e-05
+## ORAI2  0.0005244971 5.269777e-05
+## GNAI2  0.0005434369 7.879310e-05
+
+plot(t_limma_pval)
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-42-1.png" alt></p>
+<pre><code>pheatmap::pheatmap(cor(t_limma_pval))
+</code></pre>
+<p><img src="try_files/figure-markdown_strict/unnamed-chunk-42-2.png" alt><br>
+#看哪些基因在两种方法种的p值差异比较大</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/R/">R</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/R/">R</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生物信息学/">生物信息学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/统计/">统计</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+
   
     <article id="post-网页右上角显示github" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
@@ -819,6 +1671,18 @@ title为Expression data from paclitaxel and salinomycin-treated HMLER breast can
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/05/01/oo/">生信技能树R作业答案-高级</a></h6>
+              <span>五月 1, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/29/网页右上角显示github/">github图表加到网页角落</a></h6>
               <span>四月 29, 2019</span>
             </div>
@@ -873,18 +1737,6 @@ title为Expression data from paclitaxel and salinomycin-treated HMLER breast can
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/27/ggstatsplot包的安装和简单使用/">ggstatsplot包的安装和简单使用</a></h6>
-              <span>四月 27, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -894,7 +1746,7 @@ title为Expression data from paclitaxel and salinomycin-treated HMLER breast can
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -904,7 +1756,7 @@ title为Expression data from paclitaxel and salinomycin-treated HMLER breast can
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/">R</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCI绘图/">SCI绘图</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-github，域名，个人网站/">hexo github，域名，个人网站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人域名/">个人域名</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生物信息学/">生物信息学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/绘图/">绘图</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计/">统计</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/">R</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCI绘图/">SCI绘图</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-github，域名，个人网站/">hexo github，域名，个人网站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人域名/">个人域名</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生物信息学/">生物信息学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/绘图/">绘图</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计/">统计</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -914,7 +1766,7 @@ title为Expression data from paclitaxel and salinomycin-treated HMLER breast can
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/SCI绘图/" style="font-size: 10px;">SCI绘图</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/hexo-github，域名，个人网站/" style="font-size: 10px;">hexo github，域名，个人网站</a> <a href="/tags/个人域名/" style="font-size: 10px;">个人域名</a> <a href="/tags/生物信息学/" style="font-size: 10px;">生物信息学</a> <a href="/tags/绘图/" style="font-size: 10px;">绘图</a> <a href="/tags/统计/" style="font-size: 15px;">统计</a>
+      <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/SCI绘图/" style="font-size: 10px;">SCI绘图</a> <a href="/tags/github/" style="font-size: 16.67px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/hexo-github，域名，个人网站/" style="font-size: 10px;">hexo github，域名，个人网站</a> <a href="/tags/个人域名/" style="font-size: 10px;">个人域名</a> <a href="/tags/生物信息学/" style="font-size: 13.33px;">生物信息学</a> <a href="/tags/绘图/" style="font-size: 10px;">绘图</a> <a href="/tags/统计/" style="font-size: 16.67px;">统计</a>
     </div>
   </div>
 
@@ -924,7 +1776,7 @@ title为Expression data from paclitaxel and salinomycin-treated HMLER breast can
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -945,6 +1797,8 @@ title为Expression data from paclitaxel and salinomycin-treated HMLER breast can
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
+    <a href="/links" class="mobile-nav-link">links</a>
+  
     <a href="/about" class="mobile-nav-link">About</a>
   
 </nav> -->
@@ -953,7 +1807,7 @@ title为Expression data from paclitaxel and salinomycin-treated HMLER breast can
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2019 K2 biogithub All Rights Reserved.
+	      &copy; 2019 K1 biogithub All Rights Reserved.
         
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  
