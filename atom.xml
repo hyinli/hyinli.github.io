@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hyinli.github.io/"/>
-  <updated>2019-05-04T02:57:18.295Z</updated>
+  <updated>2019-05-06T12:57:57.167Z</updated>
   <id>https://hyinli.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux常用快捷键</title>
+    <link href="https://hyinli.github.io/2019/05/04/markdown%E6%A8%A1%E7%89%88/"/>
+    <id>https://hyinli.github.io/2019/05/04/markdown模版/</id>
+    <published>2019-05-04T11:57:16.421Z</published>
+    <updated>2019-05-06T12:57:57.167Z</updated>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th>快捷键</th><th>作用</th><th>描述</th></tr></thead><tbody><tr><td>Tab</td><td>自动补全</td><td></td></tr><tr><td>↑</td><td>显示上一条命令</td><td>–</td></tr><tr><td>↓</td><td>显示下一条命令</td><td>–</td></tr><tr><td>Ctrl + a</td><td>移动到行首</td><td>–</td></tr><tr><td>Ctrl + e</td><td>移动到行末</td><td>–</td></tr><tr><td>Ctrl + c</td><td>终止当前任务</td><td>–</td></tr><tr><td>Ctrl+r</td><td>历史命令中查找</td><td>非常好用</td></tr><tr><td>Ctrl+u</td><td>删除光标之前的内容</td><td></td></tr><tr><td>Ctrl+k</td><td>删除光标之后的内容</td><td></td></tr><tr><td>Ctrl+d</td><td>删除光标后一个字符</td><td>光标后</td></tr><tr><td>Ctrl+h</td><td>删除光标前一个字符</td><td>光标前</td></tr><tr><td>Ctrl+y</td><td>粘贴刚才上三项删除的字符</td><td></td></tr><tr><td>鼠标左选中即复制</td><td>鼠标右直接粘贴</td><td></td></tr><tr><td>Shift+Ctrl+C</td><td>复制</td><td></td></tr><tr><td>Shift+Ctrl+V</td><td>粘贴</td><td>–</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;快捷键&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Tab&lt;/td&gt;
+&lt;td&gt;自动补全&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;↑&lt;
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://hyinli.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://hyinli.github.io/tags/Linux/"/>
+    
+      <category term="快捷键" scheme="https://hyinli.github.io/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>生信技能树R作业答案-高级</title>
