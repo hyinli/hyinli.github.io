@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="K1 biogithub">
 <meta property="og:description" content="1基础命令: cd -, cd … , history, !5 ,  /home/ , /tmp/ , &amp;gt;,&amp;amp;，jobs,nohup 1,2,0  1 cd(change directory) cd …返回上一级目录 cd …/…返回上两级目录 cd 进入家目录 cd ~进入家目录(目前用户身份所在的主文件夹)等同于cd cd ~account 进到account这个用户的主文件夹">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-07T10:32:20.317Z">
+<meta property="og:updated_time" content="2019-05-09T13:06:46.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用命令">
 <meta name="twitter:description" content="1基础命令: cd -, cd … , history, !5 ,  /home/ , /tmp/ , &amp;gt;,&amp;amp;，jobs,nohup 1,2,0  1 cd(change directory) cd …返回上一级目录 cd …/…返回上两级目录 cd 进入家目录 cd ~进入家目录(目前用户身份所在的主文件夹)等同于cd cd ~account 进到account这个用户的主文件夹">
@@ -460,12 +460,24 @@
                 
               
 
-              <time title="创建时间：2019-05-07 10:26:18 / 修改时间：18:32:20" itemprop="dateCreated datePublished" datetime="2019-05-07T10:26:18+08:00">2019-05-07</time>
+              <time title="创建时间：2019-05-07 10:26:18" itemprop="dateCreated datePublished" datetime="2019-05-07T10:26:18+08:00">2019-05-07</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-09 21:06:46" itemprop="dateModified" datetime="2019-05-09T21:06:46+08:00">2019-05-09</time>
               
             
           </span>
@@ -511,7 +523,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.5k</span>
+                <span title="本文字数">4.6k</span>
               
 
               
@@ -525,7 +537,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -657,6 +669,36 @@ du -sh常用</p>
 <p>chown,chgrp,groups,ls</p>
 <h1 id="5文本操作"><a class="markdownIt-Anchor" href="#5文本操作"></a> 5文本操作：</h1>
 <p>awk,grep,sed,paste,cat,diff,wc,vi</p>
+<h2 id="51-wc"><a class="markdownIt-Anchor" href="#51-wc"></a> 5.1 wc</h2>
+<p>wc命令计算文件的行数，字数和字节数<br>
+用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wc [-clw] 文件</span><br></pre></td></tr></table></figure>
+<p>-c 只显示bytes数<br>
+-l 只显示行数<br>
+-w 只显示字数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wc testfile           # testfile文件的统计信息  </span><br><span class="line">3 92 598 testfile       # testfile文件的行数为3、单词数92、字节数598</span><br></pre></td></tr></table></figure>
+<h2 id="52-diff"><a class="markdownIt-Anchor" href="#52-diff"></a> 5.2 diff</h2>
+<p>diff命令用了比较两个文件的差异</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">diff me.txt me_copy.txt -y</span><br><span class="line">This is the first post.                                       | This is the first first post.</span><br><span class="line">This is the second line.                                      | This is the second second line.</span><br><span class="line">This is the third line.                                       | This is the third third line..</span><br></pre></td></tr></table></figure>
+<p>diff的参数很多，具体参考<a href="http://www.runoob.com/linux/linux-comm-diff.html" target="_blank" rel="noopener">Linux diff命令</a>,常用-y<br>
+结果解释</p>
+<blockquote>
+<p>&quot;|&quot;表示前后2个文件内容有不同<br>
+&quot;&lt;&quot;表示后面文件比前面文件少了1行内容<br>
+&quot;&gt;&quot;表示后面文件比前面文件多了1行内容</p>
+</blockquote>
+<h2 id="53-paste命令"><a class="markdownIt-Anchor" href="#53-paste命令"></a> 5.3 paste命令</h2>
+<p>paste命令用于合并文件的列，把文件内容列列合并。简单就是列追加，类似R中的<code>cbind</code>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paste [-s] [-d&lt;间隔字符&gt;][文件1][文件2][文件...]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cat p1</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cat p2</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cat p3</span><br><span class="line">I</span><br><span class="line">II</span><br><span class="line">III</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ paste  p1 p2 p3</span><br><span class="line">1       a       I</span><br><span class="line">2       b       II</span><br><span class="line">3       c       III</span><br><span class="line">        d</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ paste -d &apos;%^&amp;&apos; p1 p2 p3</span><br><span class="line">1%a^I</span><br><span class="line">2%b^II</span><br><span class="line">3%c^III</span><br><span class="line">%d^</span><br></pre></td></tr></table></figure>
+<p>看下-s参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ paste -s p1 p2 p3</span><br><span class="line">1       2       3</span><br><span class="line">a       b       c       d</span><br><span class="line">I       II      III</span><br></pre></td></tr></table></figure>
+<p>相当于excel里的“转置粘贴”</p>
+<h2 id="54-cut命令"><a class="markdownIt-Anchor" href="#54-cut命令"></a> 5.4 cut命令</h2>
 
       
     </div>
@@ -977,7 +1019,7 @@ du -sh常用</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1基础命令"><span class="nav-text"> 1基础命令:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-cdchange-directory"><span class="nav-text"> 1 cd(change directory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-history"><span class="nav-text"> 2 history</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2文件和目录操作"><span class="nav-text"> 2文件和目录操作：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ls-最常用ls-al"><span class="nav-text"> 1 ls() 最常用ls -al</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-pwdprint-working-directory"><span class="nav-text"> 2 pwd(print working directory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-mkdirmake-directory"><span class="nav-text"> 3 mkdir(make directory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-rm和rmdirremove-directory"><span class="nav-text"> 4 rm和rmdir(remove directory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-复制-移动-删除cprmmv"><span class="nav-text"> 5 复制、移动、删除：cp，rm，mv</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-复制cpcopy"><span class="nav-text"> 1 复制cp(copy)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-删除rmremove"><span class="nav-text"> 2 删除rm(remove)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-移动或改名mvmove"><span class="nav-text"> 3 移动或改名mv(move)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3文件内容查阅touchheadtaillessmorecat"><span class="nav-text"> 3文件内容查阅touch,head,tail,less,more，cat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-touch-创建或修改文件"><span class="nav-text"> 1 touch 创建或修改文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-catconcatenate一口气输出到屏幕"><span class="nav-text"> 2 cat(concatenate)：一口气输出到屏幕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-more一页一页翻"><span class="nav-text"> 3 more一页一页翻</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-less一页一页翻"><span class="nav-text"> 4 less一页一页翻</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-head和tail"><span class="nav-text"> 5 head和tail</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#取11到20行呢"><span class="nav-text"> 取11到20行呢</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3系统管理"><span class="nav-text"> 3系统管理：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-df"><span class="nav-text"> 1 df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-du"><span class="nav-text"> 2 du</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#top"><span class="nav-text"> top</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4用户权限"><span class="nav-text"> 4用户权限：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5文本操作"><span class="nav-text"> 5文本操作：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1基础命令"><span class="nav-text"> 1基础命令:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-cdchange-directory"><span class="nav-text"> 1 cd(change directory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-history"><span class="nav-text"> 2 history</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2文件和目录操作"><span class="nav-text"> 2文件和目录操作：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ls-最常用ls-al"><span class="nav-text"> 1 ls() 最常用ls -al</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-pwdprint-working-directory"><span class="nav-text"> 2 pwd(print working directory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-mkdirmake-directory"><span class="nav-text"> 3 mkdir(make directory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-rm和rmdirremove-directory"><span class="nav-text"> 4 rm和rmdir(remove directory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-复制-移动-删除cprmmv"><span class="nav-text"> 5 复制、移动、删除：cp，rm，mv</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-复制cpcopy"><span class="nav-text"> 1 复制cp(copy)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-删除rmremove"><span class="nav-text"> 2 删除rm(remove)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-移动或改名mvmove"><span class="nav-text"> 3 移动或改名mv(move)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3文件内容查阅touchheadtaillessmorecat"><span class="nav-text"> 3文件内容查阅touch,head,tail,less,more，cat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-touch-创建或修改文件"><span class="nav-text"> 1 touch 创建或修改文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-catconcatenate一口气输出到屏幕"><span class="nav-text"> 2 cat(concatenate)：一口气输出到屏幕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-more一页一页翻"><span class="nav-text"> 3 more一页一页翻</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-less一页一页翻"><span class="nav-text"> 4 less一页一页翻</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-head和tail"><span class="nav-text"> 5 head和tail</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#取11到20行呢"><span class="nav-text"> 取11到20行呢</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3系统管理"><span class="nav-text"> 3系统管理：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-df"><span class="nav-text"> 1 df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-du"><span class="nav-text"> 2 du</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#top"><span class="nav-text"> top</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4用户权限"><span class="nav-text"> 4用户权限：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5文本操作"><span class="nav-text"> 5文本操作：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#51-wc"><span class="nav-text"> 5.1 wc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#52-diff"><span class="nav-text"> 5.2 diff</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#53-paste命令"><span class="nav-text"> 5.3 paste命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#54-cut命令"><span class="nav-text"> 5.4 cut命令</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1010,7 +1052,7 @@ du -sh常用</p>
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">53k</span>
+    <span title="站点总字数">55k</span>
   
 
   
@@ -1019,7 +1061,7 @@ du -sh常用</p>
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">49 分钟</span>
+    <span title="站点阅读时长">50 分钟</span>
   
 </div>
 
