@@ -39,7 +39,7 @@
   <entry>
     <title><![CDATA[Linux常用快捷键]]></title>
     <url>%2F2019%2F05%2F04%2FLinux%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%2F</url>
-    <content type="text"><![CDATA[快捷键 作用 描述 Tab 自动补全 ↑ 显示上一条命令 – ↓ 显示下一条命令 – Ctrl + a 移动到行首 – Ctrl + e 移动到行末 – Ctrl + c 终止当前任务 – Ctrl+r 历史命令中查找 非常好用 Ctrl+u 删除光标之前的内容 Ctrl+k 删除光标之后的内容 Ctrl+d 删除光标后一个字符 光标后 Ctrl+h 删除光标前一个字符 光标前 Ctrl+y 粘贴刚才上三项删除的字符 鼠标左选中即复制 鼠标右直接粘贴 Shift+Ctrl+C 复制 Shift+Ctrl+V 粘贴 –]]></content>
+    <content type="text"><![CDATA[快捷键 作用 描述 Tab 自动补全 ↑ 显示上一条命令 – ↓ 显示下一条命令 – Ctrl + A 移动光标到行首 – Ctrl + E 移动光标到行末 – Ctrl + C 终止当前任务 – Ctrl+R 历史命令中查找 非常好用 Ctrl+U 删除光标之前的内容 Ctrl+K 删除光标之后到行末的内容 Ctrl+D 删除光标后一个字符 光标后 Ctrl+H 删除光标前一个字符 光标前 Ctrl+Y 粘贴刚才上三项删除的字符 CTRL + W 从光标处删除至字首 – Shift + Insert 向终端内粘贴文本 – ALT + F 按单词前移（右向） – ALT + B 按单词后移（左向） – ALT + Backspace 删除前一个单词 – 鼠标左选中即复制 鼠标右直接粘贴 Shift+Ctrl+C 复制 Shift+Ctrl+V 粘贴 –]]></content>
       <categories>
         <category>Linux</category>
       </categories>
