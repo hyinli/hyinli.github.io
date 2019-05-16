@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hyinli.github.io/"/>
-  <updated>2019-05-10T02:48:43.074Z</updated>
+  <updated>2019-05-16T13:35:44.991Z</updated>
   <id>https://hyinli.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu首次登陆设置root密码</title>
+    <link href="https://hyinli.github.io/2019/05/16/ubuntu%E9%A6%96%E6%AC%A1%E7%99%BB%E9%99%86%E8%AE%BE%E7%BD%AEroot%E5%AF%86%E7%A0%81/"/>
+    <id>https://hyinli.github.io/2019/05/16/ubuntu首次登陆设置root密码/</id>
+    <published>2019-05-16T13:34:42.676Z</published>
+    <updated>2019-05-16T13:35:44.991Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="给root用户设置密码"><a class="markdownIt-Anchor" href="#给root用户设置密码"></a> 给root用户设置密码</h1><p>打开终端，输入命令<code>sudo passwd</code>，输入当前用户的密码，然后系统会提示输入新密码<code>Enter new UNIX password:</code>并再次确认<code>Retype new UNIX password:</code>，此时的密码就是root新密码。修改成功后，输入命令su root，再输入新的密码就ok了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;给root用户设置密码&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#给root用户设置密码&quot;&gt;&lt;/a&gt; 给root用户设置密码&lt;/h1&gt;
+&lt;p&gt;打开终端，输入命令&lt;code&gt;sudo passwd&lt;/code&gt;，输入当前用户的密码，然
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://hyinli.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://hyinli.github.io/tags/Linux/"/>
+    
+      <category term="root密码" scheme="https://hyinli.github.io/tags/root%E5%AF%86%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>三阴性乳腺癌</title>
