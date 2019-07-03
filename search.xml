@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[实验诊断学CBL实验教程]]></title>
+    <url>%2F2019%2F07%2F03%2FCBL_book%2F</url>
+    <content type="text"><![CDATA[实验诊断学CBL实验教程 1 血液学一般检查 图1 贫血骨髓象 图2 骨髓象2 2 感染的实验诊断 3 血液病的实验诊断 4 血栓性疾病的实验诊断 5 体液检测 6 免疫与生化检测]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>常用命令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ubuntu首次登陆设置root密码]]></title>
     <url>%2F2019%2F05%2F16%2Fubuntu%E9%A6%96%E6%AC%A1%E7%99%BB%E9%99%86%E8%AE%BE%E7%BD%AEroot%E5%AF%86%E7%A0%81%2F</url>
     <content type="text"><![CDATA[给root用户设置密码 打开终端，输入命令sudo passwd，输入当前用户的密码，然后系统会提示输入新密码Enter new UNIX password:并再次确认Retype new UNIX password:，此时的密码就是root新密码。修改成功后，输入命令su root，再输入新的密码就ok了]]></content>
